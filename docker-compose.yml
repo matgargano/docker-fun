@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - EMAIL=${EMAIL}
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./certs:/etc/letsencrypt
+    networks:
+      - webnet
+
+networks:
+  webnet:
